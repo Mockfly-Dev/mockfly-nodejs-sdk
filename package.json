@@ -1,0 +1,50 @@
+{
+  "name": "mockfly-js-sdk",
+  "version": "1.0.0",
+  "description": "Mockfly SDK for JavaScript",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest src/",
+    "tdd": "jest src/ --watch",
+    "postinstall": "rollup --config rollup.config.js",
+    "transpile": "babel src --out-dir lib",
+    "build": "rollup --config rollup.config.js",
+    "linter": "prettier --check ./src",
+    "start": "lite-server",
+    "prepublish": "npm run build && npm run transpile",
+    "prepare": "husky install",
+    "coverage": "jest src/ --coverage src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mockfly-Dev/mockfly-js-sdk.git"
+  },
+  "author": "Mockfly",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/Mockfly-Dev/mockfly-js-sdk/issues"
+  },
+  "homepage": "https://github.com/Mockfly-Dev/mockfly-js-sdk#readme",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "@testing-library/dom": "^8.14.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "babel-plugin-inline-dotenv": "^1.7.0",
+    "babelrc-rollup": "^3.0.0",
+    "core-js": "^3.21.1",
+    "dotenv": "^16.0.1",
+    "husky": "^8.0.1",
+    "jest-environment-jsdom": "^28.1.1",
+    "lite-server": "^2.6.1",
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-dotenv": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1"
+  }
+}
