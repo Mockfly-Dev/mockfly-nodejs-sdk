@@ -2,32 +2,40 @@ import axios from 'axios'
 
 const host = process.env.MOCKFLY_BACKEND_HOST
 
-const Mockfly = function() {
-    this.environment = ''
-    this.authHeader = ''
-    this.evaluationKey = ''
+class Mockfly {
+  evaluationKey = ''
+  environment = ''
+  authHeader = ''
 
+  constructor(props) {
+    this.environment = props?.environment
+    this.authHeader = props?.authHeader
+  }
 
-    this.init = ({environment, authHeader}) => {
-        this.environment = environment
-        this.authHeader = authHeader
+  identify = value => {
+    this.evaluationKey = value
+  }
+
+  getFlag = async key => {
+    if (!this.authHeader) {
+      throw new Error('You must add the authHeader in constructor when create the mockfly object.')
     }
 
-    this.identify = value => {
-        this.evaluationKey = value
+    if (!key) {
+      throw new Error('Key cannot be null. Please, set a key when call to mockfly.getFlag(key).')
     }
 
-
-    this.getFlag = async (key) => {
-        if (this.evaluationKey) {
-            const response = await axios.post(`${host}/flags/evaluate`, { keyFlag: key, environment: this.environment, evaluationKey: this.evaluationKey  })
-            return response.data
-        } else {
-            throw new Error('You must identify a user before get a flag. You can use Mockfly.identify(value) function.')
-        }
-
+    if (this.evaluationKey) {
+      const response = await axios.post(`${host}/flags/evaluate`, {
+        keyFlag: key,
+        environment: this.environment,
+        evaluationKey: this.evaluationKey,
+      })
+      return response.data
+    } else {
+      throw new Error('You must identify a user before get a flag. You can use mockfly.identify(value) function.')
     }
-
+  }
 }
 
 export default Mockfly
