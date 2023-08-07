@@ -1,6 +1,6 @@
 {
   "name": "mockfly-js-sdk",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Mockfly SDK for JavaScript",
   "main": "lib/mockfly-js-sdk.js",
   "scripts": {
