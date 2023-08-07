@@ -1,6 +1,4 @@
-import axios from 'axios'
-
-const host = process.env.MOCKFLY_BACKEND_HOST
+const axios = require('axios')
 
 class Mockfly {
   evaluationKey = ''
@@ -25,17 +23,22 @@ class Mockfly {
       throw new Error('Key cannot be null. Please, set a key when call to mockfly.getFlag(key).')
     }
 
-    if (this.evaluationKey) {
-      const response = await axios.post(`${host}/flags/evaluate`, {
+    if (!this.evaluationKey) {
+      throw new Error('You must identify a user before get a flag. You can use mockfly.identify(value) function.')
+    }
+
+    const response = await axios.post(
+      `https://api.mockfly.dev/flags/evaluate`,
+      {
         keyFlag: key,
         environment: this.environment,
         evaluationKey: this.evaluationKey,
-      })
-      return response.data
-    } else {
-      throw new Error('You must identify a user before get a flag. You can use mockfly.identify(value) function.')
-    }
+      },
+      { headers: { Authorization: this.authHeader } }
+    )
+
+    return response.data
   }
 }
 
-export default Mockfly
+module.exports = Mockfly
