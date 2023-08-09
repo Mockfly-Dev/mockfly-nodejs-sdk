@@ -1,8 +1,8 @@
 {
-  "name": "mockfly-js-sdk",
+  "name": "mockfly-nodejs-sdk",
   "version": "0.0.7",
-  "description": "Mockfly SDK for JavaScript",
-  "main": "lib/mockfly-js-sdk.js",
+  "description": "Mockfly NodeJS SDK",
+  "main": "lib/mockfly-nodejs-sdk.js",
   "scripts": {
     "test": "jest src/",
     "tdd": "jest src/ --watch",
