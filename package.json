@@ -1,14 +1,12 @@
 {
   "name": "mockfly-js-sdk",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Mockfly SDK for JavaScript",
   "main": "lib/mockfly-js-sdk.js",
   "scripts": {
     "test": "jest src/",
     "tdd": "jest src/ --watch",
     "build": "webpack --config webpack.config.js",
-    "build:browser": "webpack --config webpack.config.js --target web",
-    "build:node": "webpack --config webpack.config.js --target node",
     "linter": "prettier --check ./src",
     "prepublish": "npm run build",
     "prepare": "husky install",
